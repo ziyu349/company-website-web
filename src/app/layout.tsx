@@ -31,12 +31,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // 结构化数据 (JSON-LD)，让 AI 更准确地提取公司信息
+  const envUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.URL || process.env.DEPLOY_PRIME_URL;
+  const siteUrl = (envUrl ? envUrl.replace(/\/$/, "") : "https://julusheng.com");
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "重庆炬陆昇科技有限公司",
-    "image": "https://julusheng.com/brand/logo.png",
+    "image": `${siteUrl}/brand/logo.svg`,
     "description": "立足万州，专注渝东北本地商家智能设备服务，提供万州美团充电宝、万州收银系统、万州充电桩、万州无人零售柜等业务支持。",
     "keywords": "万州美团充电宝, 万州充电宝, 渝东北充电宝, 万州收银系统, 万州美团收银系统, 万州无人零售柜, 万州充电桩",
     "address": {
